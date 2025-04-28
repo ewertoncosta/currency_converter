@@ -1,0 +1,2 @@
+insert into users (username, password) values ('admin', '$2a$12$OHedqUl5s9WItxRSk0gFgOyKxfooxJxCbSmp9V5/OhI2ITd6lRxqC'); -- Encoded 'admin'
+insert into users (username, password) values ('user', '$2a$12$C6KORw52yl8htzAEofK3xOlcB157Boa45HPkg1o8iXO5F.qiLQ5We');-- Encoded 'user'

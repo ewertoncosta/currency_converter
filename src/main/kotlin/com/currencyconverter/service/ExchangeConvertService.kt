@@ -4,21 +4,26 @@ import com.currencyconverter.model.CurrencyConversionRequest
 import com.currencyconverter.model.ExchangeApiResponse
 import com.currencyconverter.model.ExchangeTransactionDB
 import com.currencyconverter.repository.ExchangeTransactionRepository
+import com.currencyconverter.repository.UserRepository
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import java.util.UUID
 
 @Service
 class ExchangeConvertService(
     private val exchangeApiClient: ExchangeRatesApi,
-    private val exchangeTransactionRepository: ExchangeTransactionRepository
+    private val exchangeTransactionRepository: ExchangeTransactionRepository,
+    private val userRepository: UserRepository
 ) {
     fun convertCurrency(request: CurrencyConversionRequest): ExchangeApiResponse {
         val response = exchangeApiClient.getData(request)
         val userId = UUID.randomUUID()
+        val username = userRepository.findByUsername(SecurityContextHolder.getContext().authentication.name)
+            ?: throw IllegalArgumentException("User not found")
 
         val exchangeApiResponse = ExchangeApiResponse(
             transactionId = UUID.randomUUID(),
-            userId = userId,
+            userName = username.username,
             sourceCurrency = request.from,
             sourceAmount = request.amount,
             targetCurrency = response.rates.keys.first(),
@@ -28,7 +33,7 @@ class ExchangeConvertService(
         )
 
         val transaction = ExchangeTransactionDB(
-            userId = userId,
+            userName = username.username,
             sourceCurrency = request.from,
             sourceAmount = request.amount,
             targetCurrency = response.rates.keys.first(),

@@ -15,12 +15,11 @@ import java.util.*
 data class ExchangeTransactionDB(
     @Schema(description = "The unique identifier for the transaction", required = true, example = "123456789")
     @Id
-    //@GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID = UUID.randomUUID(),
 
     @Schema(description = "The unique identifier for the user", required = true, example = "123456789")
     @NotNull
-    val userId: UUID = UUID.randomUUID(),
+    val userName: String? = "",
 
     @Schema(description = "The unique identifier for the user", required = true, example = "987654321")
     @NotNull

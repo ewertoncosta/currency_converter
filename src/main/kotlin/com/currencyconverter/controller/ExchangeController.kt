@@ -8,8 +8,6 @@ import com.currencyconverter.service.ExchangeConvertService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.time.LocalDate
-import java.util.UUID
 
 @RestController
 class ExchangeController(
@@ -33,9 +31,9 @@ class ExchangeController(
     }
     @GetMapping("/exchange/history", produces = ["application/json"])
     fun getExchangeRateHistory(
-        @RequestParam("userId") userId: UUID,
+        @RequestParam("userName") userName: String,
     ): List<ExchangeTransactionDB> {
-        val response = exchangeTransactionRepository.findByUserId(userId)
+        val response = exchangeTransactionRepository.findByUserName(userName)
         return response
     }
 }

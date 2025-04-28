@@ -2,8 +2,6 @@ package com.currencyconverter.model
 
 import io.swagger.v3.oas.annotations.media.Schema
 import org.jetbrains.annotations.NotNull
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.util.*
 
 @Schema(description = "Response model for exchange API")
@@ -12,7 +10,7 @@ data class ExchangeApiResponse(
     val transactionId: UUID,
 
     @Schema(description = "The unique identifier for the user", required = true, example = "987654321")
-    val userId: UUID,
+    val userName: String? = "",
 
     @Schema(description = "The three-letter currency code of the currency converted from", required = true, example = "USD")
     val sourceCurrency: String = "",
