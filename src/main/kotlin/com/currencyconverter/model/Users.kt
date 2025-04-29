@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor
 @NoArgsConstructor
 class Users {
     @Id
-    var username: String? = null
-    var password: String? = null
+    lateinit var username: String
+    lateinit var password: String
 }

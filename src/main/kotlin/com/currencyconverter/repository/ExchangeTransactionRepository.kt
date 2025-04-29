@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ExchangeTransactionRepository : JpaRepository<ExchangeTransactionDB, Long>{
-    fun findByUserName(userName: String): List<ExchangeTransactionDB>
+    fun findByUserName(userName: String?): List<ExchangeTransactionDB>
 }
