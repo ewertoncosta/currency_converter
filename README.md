@@ -32,7 +32,7 @@ This is a **Currency Converter** application built using **Kotlin**, **Spring Bo
 
 ## Prerequisites
 Before running the application locally, ensure you have the following installed:
-- **Java 17** or higher
+- **Java 18** or higher
 - **Maven 3.8** or higher
 - **Kotlin 1.8** or higher
 - **Git**
@@ -42,11 +42,10 @@ Before running the application locally, ensure you have the following installed:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/your-username/currency-converter.git
-cd currency-converter
 ```
 
 ### 2. Configure the Database
-The **Users** table is created automatically when the application starts. The application uses an embedded **H2 database** for local development. No additional setup is required. The database configuration is already provided in `src/main/resources/application.yml`:
+The **Users** table, used for basic auth, is created automatically when the application starts. The application uses an embedded **H2 database** for local development. No additional setup is required. The database configuration is already provided in `src/main/resources/application.yml`:
   
 ```yaml
 spring:
