@@ -50,12 +50,18 @@ The **Users** table is created automatically when the application starts. The ap
   
 ```yaml
 spring:
+  application:
+    name: currency-converter
   datasource:
-    url: jdbc:h2:mem:currency_converter;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: 'jdbc:h2:mem:testdb'
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+  h2:
+    console:
+      enabled: true
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
 ```
