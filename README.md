@@ -19,7 +19,6 @@ Before running the application locally, ensure you have the following installed:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/your-username/currency-converter.git
-cd currency-converter
 ```
 
 This is a **Currency Converter** application built using **Kotlin**, **Spring Boot**, and **Maven**. It provides functionality to convert currencies using exchange rates fetched from an external API.
@@ -36,13 +35,6 @@ Before running the application locally, ensure you have the following installed:
 - **Maven 3.8** or higher
 - **Kotlin 1.8** or higher
 - **Git**
-
-## Running the Application Locally
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/currency-converter.git
-```
 
 ### 2. Configure the Database
 The **Users** table, used for basic auth, is created automatically when the application starts. The application uses an embedded **H2 database** for local development. No additional setup is required. The database configuration is already provided in `src/main/resources/application.yml`:
