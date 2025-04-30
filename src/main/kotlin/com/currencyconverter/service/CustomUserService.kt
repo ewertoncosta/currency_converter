@@ -17,8 +17,8 @@ class CustomUserService(
             ?: throw UsernameNotFoundException("User not found")
 
         return User.builder()
-            .username(user.username!!)
-            .password(user.password!!)
+            .username(user.username)
+            .password(user.password)
             .roles("USER")
             .build()
     }
