@@ -21,7 +21,12 @@ class SecurityConfig(
         http
             .csrf { it.disable() }
             .authorizeHttpRequests {
-                it.anyRequest().authenticated()
+                it.requestMatchers(
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
+                    "/swagger-ui.html"
+                ).permitAll()
+                    .anyRequest().authenticated()
             }
             .httpBasic {}
             .userDetailsService(customUserService)
