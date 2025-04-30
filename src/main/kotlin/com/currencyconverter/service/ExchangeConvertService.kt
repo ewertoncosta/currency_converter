@@ -1,5 +1,6 @@
 package com.currencyconverter.service;
 
+import com.currencyconverter.exception.InvalidAmountException
 import com.currencyconverter.exception.InvalidCurrencyCodeException
 import com.currencyconverter.model.CurrencyCodeEnum
 import com.currencyconverter.model.CurrencyConversionRequest
@@ -72,7 +73,9 @@ class ExchangeConvertService(
     }
 
     fun validateAmount(amount: Double): Double {
-        require(amount > 0) { "Amount must be greater than zero" }
+       if(amount <= 0) {
+           throw InvalidAmountException("Invalid amount: $amount, must be greater than 0")
+        }
         return amount
     }
 }
