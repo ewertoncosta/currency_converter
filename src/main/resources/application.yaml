@@ -13,3 +13,5 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+exchange-rates-api:
+  url: 'http://api.exchangeratesapi.io/latest'
