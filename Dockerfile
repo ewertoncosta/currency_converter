@@ -7,12 +7,13 @@ RUN ./mvnw clean package -DskipTests
 
 RUN ls -l /app/target
 
+
 ENV TZ=America/Sao_Paulo
 RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
     echo ${TZ} > /etc/timezone
 
-COPY --from=build /app/target/currency-converter.jar /app/currency-converter.jar
+COPY /app/target/currency-converter.jar /app/currency-converter.jar
 
 EXPOSE 8080
 
