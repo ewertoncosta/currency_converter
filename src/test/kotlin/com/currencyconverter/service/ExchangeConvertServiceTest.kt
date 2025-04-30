@@ -1,5 +1,6 @@
 package com.currencyconverter.service
 
+import com.currencyconverter.exception.InvalidAmountException
 import com.currencyconverter.exception.InvalidCurrencyCodeException
 import com.currencyconverter.model.CurrencyConversionRequest
 import com.currencyconverter.model.ExchangeRatesResponse
@@ -102,7 +103,7 @@ class ExchangeConvertServiceTest {
         val request = CurrencyConversionRequest("abcd-1234-abcd-1234","USD", "EUR", -10.0)
 
         // Call the method and assert exception
-        val exception = assertThrows(IllegalArgumentException::class.java) {
+        val exception = assertThrows(InvalidAmountException::class.java) {
             exchangeConvertService.convertCurrency(request)
         }
         assertEquals("Amount must be greater than zero", exception.message)
