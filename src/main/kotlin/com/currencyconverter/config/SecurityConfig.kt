@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 class SecurityConfig(
     private val customUserService: CustomUserService
 ) {
-    // 1) Tell Spring Security to ignore swagger completely
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer {
         return WebSecurityCustomizer { web ->
@@ -28,7 +27,6 @@ class SecurityConfig(
         }
     }
 
-    // 2) Secure everything else
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http

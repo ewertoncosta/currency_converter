@@ -8,7 +8,7 @@ import java.time.LocalDate
 data class CurrencyConversionRequest(
     @Schema(description = "Your API Key", required = true)
     @NonNull
-    val accessKey: String = "ac969bc992d3647c69105d04b6fb51ae",
+    val accessKey: String,
 
     @Schema(description = "The three-letter currency code of the currency you would like to convert from", required = true, example = "USD")
     @NonNull
