@@ -1,27 +1,20 @@
-FROM eclipse-temurin:18-jdk-alpine AS build
-WORKDIR /app
-
-COPY .mvn/ .mvn/
-COPY mvnw pom.xml ./
-
-RUN chmod +x ./mvnw
-
-RUN ./mvnw dependency:go-offline
-
-COPY src ./src
-
-RUN ./mvnw clean package -DskipTests
-
-FROM eclipse-temurin:18-jre-alpine
+FROM maven:3.8.7-openjdk-18-slim
 WORKDIR /app
 
 ENV TZ=America/Sao_Paulo
-RUN apk add --no-cache tzdata && \
-    cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-    echo ${TZ} > /etc/timezone
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends tzdata \
+ && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+ && echo $TZ > /etc/timezone \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /app/target/*.jar /app/currency-converter.jar
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+COPY src ./src
+RUN mvn clean package -DskipTests -B \
+ && cp target/*.jar app.jar
 
 EXPOSE 8080
-
-CMD ["java", "-jar", "/app/currency-converter.jar", "--spring.profiles.active=docker"]
+ENTRYPOINT ["java","-jar","app.jar","--spring.profiles.active=docker"]
