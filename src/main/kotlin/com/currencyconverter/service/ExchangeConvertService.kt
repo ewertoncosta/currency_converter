@@ -74,7 +74,7 @@ class ExchangeConvertService(
 
     fun validateAmount(amount: Double): Double {
        if(amount <= 0) {
-           throw InvalidAmountException("Invalid amount: $amount, must be greater than 0")
+           throw InvalidAmountException("Amount must be greater than zero")
         }
         return amount
     }
